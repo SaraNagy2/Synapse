@@ -240,7 +240,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.48333332
+  - time: 0.5
     functionName: CheckCards
     data: 
     objectReferenceParameter: {fileID: 0}

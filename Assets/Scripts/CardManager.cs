@@ -11,9 +11,12 @@ public class CardManager : MonoBehaviour
     private Dictionary<Sprite, int> CardsUseCount = new Dictionary<Sprite, int>();
     Card card_1;
     Card card_2;
-
+    int Count;
+    int MaxCount;
+    public bool bEndGame;
     void Start()
     {
+        MaxCount = transform.childCount / 2;
         if (Instance == null)
         {
             Instance = this;
@@ -23,7 +26,7 @@ public class CardManager : MonoBehaviour
             Destroy(gameObject);
         }
         Sprite[] loadedSprites = Resources.LoadAll<Sprite>(folderPath);
-        for (int i = 0; i < transform.childCount/2; i++)
+        for (int i = 0; i < MaxCount; i++)
         {
             CardsSprite.Add(loadedSprites[i]);
         }
@@ -63,6 +66,11 @@ public class CardManager : MonoBehaviour
         {
             card_1.Hide();
             card_2.Hide();
+            Count++;
+            if (MaxCount == Count)
+            {
+                bEndGame = true;
+            }
         }
         else 
         {
