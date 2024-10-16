@@ -7,7 +7,7 @@ public class Card : MonoBehaviour
 {
     Animator Anim;
     Sprite CardBGSprite;
-    [SerializeField] Sprite CardSprite;
+    public Sprite CardSprite;
 
     void Start()
     {
