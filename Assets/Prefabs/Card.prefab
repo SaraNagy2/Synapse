@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3894034425936462733}
   - component: {fileID: 5739162338205290383}
   - component: {fileID: 6409981857678388657}
+  - component: {fileID: 7405666888514487992}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -121,7 +122,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3894034425936462733}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6409981857678388657}
+        m_TargetAssemblyTypeName: Card, Assembly-CSharp
+        m_MethodName: OnClickCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6409981857678388657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,3 +147,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd8157f17668764590e1540153dc2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CardSprite: {fileID: 21300000, guid: df3e68e5b3a1b9543b37a449a39ad56a, type: 3}
+--- !u!95 &7405666888514487992
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6365997638429759861}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8091707f79afe4b40bcfcc249fc627d2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
