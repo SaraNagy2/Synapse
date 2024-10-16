@@ -8,7 +8,6 @@ public class Card : MonoBehaviour
     Animator Anim;
     Sprite CardBGSprite;
     public Sprite CardSprite;
-
     void Start()
     {
         Anim = GetComponent<Animator>();
@@ -23,7 +22,6 @@ public class Card : MonoBehaviour
     public void ReturnSprite()
     {
         GetComponent<Image>().sprite = CardBGSprite;
-        Anim.SetBool("Return", true);
     }
     public void Return()
     {
@@ -31,10 +29,23 @@ public class Card : MonoBehaviour
         Anim.SetBool("Return", false);
 
     }
+    public void FlipBack()
+    {
+        Anim.SetBool("Return", true);
+    }
+    public void Hide()
+    {
+        Anim.SetBool("Hide", true);
+    }
     public void OnClickCard()
     {
         if (Anim.GetBool("Flip")) return;
 
+
         Anim.SetBool("Flip",true);
+    }
+    public void CheckCards()
+    {
+        CardManager.Instance.CheckCards(this);
     }
 }
