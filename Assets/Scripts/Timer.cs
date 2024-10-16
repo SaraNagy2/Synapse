@@ -9,6 +9,7 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
+        //Debug.Log("");
         Timer_Txt = GetComponent<TMP_Text>();
     }
     private void Update()

@@ -41,7 +41,7 @@ public class Card : MonoBehaviour
     {
         if (Anim.GetBool("Flip")) return;
 
-
+        CardManager.Instance.PlayFlipSound();
         Anim.SetBool("Flip",true);
     }
     public void CheckCards()

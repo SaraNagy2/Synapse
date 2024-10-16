@@ -14,8 +14,17 @@ public class CardManager : MonoBehaviour
     int Count;
     int MaxCount;
     public bool bEndGame;
+    AudioSource audio;
+    [SerializeField] AudioClip FlipSound;
+    [SerializeField] AudioClip MismatchingSound;
+    [SerializeField] AudioClip MatchingSound;
+    [SerializeField] AudioClip WinSound;
+    [SerializeField] AudioClip GameOverSound;
+
     void Start()
     {
+        audio = GetComponent<AudioSource>();
+
         MaxCount = transform.childCount / 2;
         if (Instance == null)
         {
@@ -67,17 +76,25 @@ public class CardManager : MonoBehaviour
             card_1.Hide();
             card_2.Hide();
             Count++;
+            audio.PlayOneShot(MatchingSound);
             if (MaxCount == Count)
             {
                 bEndGame = true;
+                audio.PlayOneShot(WinSound);
             }
         }
         else 
         {
+            audio.PlayOneShot(MismatchingSound);
             card_1.FlipBack();
             card_2.FlipBack();
         }
         card_1 = null;
         card_2 = null;
     }
+    public void PlayFlipSound() 
+    {
+        audio.PlayOneShot(FlipSound);
+    }
+
 }
