@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    List<CardData> cardDataList = new List<CardData>();
+    [System.NonSerialized] public List<CardData> cardDataList = new List<CardData>();
     [System.NonSerialized] public bool bEndGame = true;
 
 
@@ -20,21 +20,13 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void SaveGame()
-    {
-        //List<CardData> cardDataList = new List<CardData>();
-
-        //foreach (Card card in cards)
-        //{
-        //    cardDataList.Add(new CardData
-        //    {
-        //        id = card.id,
-        //        isMatched = card.isMatched,
-        //        isFlipped = card.isFlipped
-        //    });
-        //}
-
-        //SaveLoadManager.SaveGame(score, gameTime, cardDataList);
+    public void SaveCard(string spriteName, bool isMatched, bool isFlipped)
+    {   
+        CardData cardData = new CardData();
+        cardData.spriteName = spriteName;
+        cardData.isMatched = isMatched;
+        cardData.isFlipped = isFlipped;
+        cardDataList.Add(cardData); 
     }
 
     public void LoadGame()
@@ -49,17 +41,10 @@ public class GameManager : MonoBehaviour
             CardManager.Instance.columns = data.columns;
             CardManager.Instance.rows = data.rows;
 
-            //for (int i = 0; i < data.cardDataList.Count; i++)
-            //{
-            //    Card card = cards.Find(c => c.id == data.cardDataList[i].id);
-            //    if (card != null)
-            //    {
-            //        card.isMatched = data.cardDataList[i].isMatched;
-            //        card.isFlipped = data.cardDataList[i].isFlipped;
-            //    }
-            //}
-            Debug.Log("datadatadatadata");
-
+            for (int i = 0; i < data.cardDataList.Count; i++)
+            {
+                SaveCard(data.cardDataList[i].spriteName, data.cardDataList[i].isMatched, data.cardDataList[i].isFlipped);
+            }
         }
         else
         {

@@ -46,7 +46,7 @@ public class CardManager : MonoBehaviour
         if (!GameManager.Instance.bEndGame)
         {
             AdjustGridCellSize();
-            loadSprites();
+            loadPreviousSprites();
             Debug.Log("StartStartStartStartStartStart");
         }
 
@@ -99,18 +99,50 @@ public class CardManager : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).GetComponent<Card>().CardSprite = GetRandomSprite();
+            transform.GetChild(i).GetComponent<Card>().id = i;
         }
+    }
+    void HideSprite(Transform card)
+    {
+        card.GetComponent<Image>().enabled = false;
+
+    }
+    void loadPreviousSprites()
+    {
+        InstantiateCards(columns, rows);
+
+        MaxCount = (columns * rows) / 2;
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).GetComponent<Card>().CardSprite = Resources.Load<Sprite>(folderPath+"/"+ GameManager.Instance.cardDataList[i].spriteName);
+            transform.GetChild(i).GetComponent<Card>().id = i;
+            if (GameManager.Instance.cardDataList[i].isMatched)
+            {
+                transform.GetChild(i).GetComponent<Card>().Hidden = true;
+                HideSprite(transform.GetChild(i));
+                Count++;
+            }
+            else if (GameManager.Instance.cardDataList[i].isFlipped)
+            {
+                transform.GetChild(i).GetComponent<Card>().OnClickCard();
+            }
+
+        }
+        Count = Count / 2;
     }
     Sprite GetRandomSprite()
     {
         int randomIndex = Random.Range(0, CardsSprite.Count);
         Sprite CardSprite = CardsSprite[randomIndex];
+        GameManager.Instance.SaveCard(CardSprite.name, false, false);
 
         CardsUseCount[CardSprite]++;
         if (CardsUseCount[CardSprite] >= 2)
         {
             CardsSprite.RemoveAt(randomIndex);
         }
+
         return CardSprite;
     }
     public void CheckCards(Card card)

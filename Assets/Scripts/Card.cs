@@ -8,7 +8,9 @@ public class Card : MonoBehaviour
     Animator Anim;
     Sprite CardBGSprite;
     public Sprite CardSprite;
-    void Start()
+    [System.NonSerialized] public int id;
+    [System.NonSerialized] public bool Hidden;
+    private void Awake()
     {
         Anim = GetComponent<Animator>();
         CardBGSprite = GetComponent<Image>().sprite;
@@ -32,17 +34,22 @@ public class Card : MonoBehaviour
     public void FlipBack()
     {
         Anim.SetBool("Return", true);
+        GameManager.Instance.cardDataList[id].isFlipped = false;
     }
     public void Hide()
     {
         Anim.SetBool("Hide", true);
+        Hidden = true;
+        GameManager.Instance.cardDataList[id].isMatched = true;
+        Debug.Log("id: "+id);
     }
     public void OnClickCard()
     {
-        if (Anim.GetBool("Flip")) return;
+        if (Hidden || Anim.GetBool("Flip")) return;
 
         SoundManager.Instance.PlayFlipSound();
         Anim.SetBool("Flip",true);
+        GameManager.Instance.cardDataList[id].isFlipped = true;
     }
     public void CheckCards()
     {

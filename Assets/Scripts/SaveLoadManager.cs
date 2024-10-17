@@ -64,6 +64,7 @@ public class SaveLoadManager : MonoBehaviour
     {
         if (File.Exists(saveFilePath))
         {
+            GameManager.Instance.cardDataList.Clear();
             File.Delete(saveFilePath);
             Debug.Log("Save data cleared.");
         }

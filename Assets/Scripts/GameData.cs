@@ -15,7 +15,7 @@ public class GameData
 [System.Serializable]
 public class CardData
 {
-    public int id; 
+    public string spriteName; 
     public bool isMatched; // Is the card matched?
     public bool isFlipped; // Is the card currently flipped?
 }
