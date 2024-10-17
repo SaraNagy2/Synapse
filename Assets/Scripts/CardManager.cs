@@ -14,12 +14,10 @@ public class CardManager : MonoBehaviour
     int Count;
     int MaxCount;
     int ComboCount = 0;
-    [System.NonSerialized] public bool bEndGame = true;
     GridLayoutGroup gridLayoutGroup;
     [SerializeField] GameObject CardPrefab;
-    int columns = 0;
-    int rows = 0;
-
+    [System.NonSerialized] public int columns = 0;
+    [System.NonSerialized] public int rows = 0;
     private void Awake()
     {
         if (Instance == null)
@@ -30,14 +28,38 @@ public class CardManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        gameObject.SetActive(false);
+        gridLayoutGroup = GetComponent<GridLayoutGroup>();
     }
     private void OnEnable()
     {
-        gridLayoutGroup = GetComponent<GridLayoutGroup>();
-        AdjustGridCellSize();
-        loadSprites();
-        bEndGame = false;
+        if (!GameManager.Instance.bEndGame)
+        {
+            AdjustGridCellSize();
+            loadSprites();
+            Debug.Log("OnEnableOnEnable");
+        }
+    }
+    private void Start()
+    {
+
+        GameManager.Instance.LoadGame();
+        if (!GameManager.Instance.bEndGame)
+        {
+            AdjustGridCellSize();
+            loadSprites();
+            Debug.Log("StartStartStartStartStartStart");
+        }
+
+        if (!GameManager.Instance.bEndGame) //continue game 
+        {
+            MainMenu.Instance.gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+            Debug.Log("StartStartStart");
+
+        }
     }
     public void InstantiateCards(int _columns, int _rows)
     {
@@ -57,7 +79,7 @@ public class CardManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        bEndGame = true;
+        GameManager.Instance.bEndGame = true;
     }
     void loadSprites() 
     {
@@ -134,6 +156,7 @@ public class CardManager : MonoBehaviour
         gameObject.SetActive(false);
         ComboCount = 0;
         Count = 0;
+        SaveLoadManager.Instance.ClearSaveData();
     }
     void AdjustGridCellSize()
     {

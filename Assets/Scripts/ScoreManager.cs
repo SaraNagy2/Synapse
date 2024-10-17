@@ -6,7 +6,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
     TMP_Text Score_Txt;
-    int Score = 0;
+    [System.NonSerialized] public int Score = 0;
     private void Awake()
     {
         if (Instance == null)
@@ -17,11 +17,9 @@ public class ScoreManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-    private void Start()
-    {
         Score_Txt = GetComponent<TMP_Text>();
     }
+
     public void SetScore(int value) 
     {
         Score += value;

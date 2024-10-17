@@ -7,7 +7,9 @@ public class Timer : MonoBehaviour
 
     TMP_Text Timer_Txt;
     public static Timer Instance;
-    private float startTime; 
+    [System.NonSerialized] public float elapsedTime;
+    float startTime; 
+    [System.NonSerialized] public float LastTime;
 
     private void Awake()
     {
@@ -30,10 +32,10 @@ public class Timer : MonoBehaviour
     }
     void calculateGameTime()
     {
-        if (!CardManager.Instance || CardManager.Instance.bEndGame) return;
+        if (!CardManager.Instance || GameManager.Instance.bEndGame) return;
 
         // Calculate elapsed time since the timer was reset
-        float elapsedTime = Time.time - startTime;
+        elapsedTime = Time.time - startTime + LastTime;
 
         int seconds = (int)(elapsedTime % 60);
         int minutes = (int)(elapsedTime / 60);

@@ -25,6 +25,9 @@ public class MainMenu : MonoBehaviour
         if (columns == 6) rows = 5;
         if (columns == 8) rows = 5;
 
+
+        GameManager.Instance.bEndGame = false;
+
         CardManager.Instance.InstantiateCards(columns,rows);
         
         CardManager.Instance.gameObject.SetActive(true);
@@ -32,6 +35,5 @@ public class MainMenu : MonoBehaviour
         gameObject.SetActive(false);
         Timer.Instance.Reset();
         ScoreManager.Instance.Reset();
-
     }
 }
