@@ -19,16 +19,6 @@ public class SaveLoadManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    //private void Start()
-    //{
-    //    List<CardData> cardDataList= new List<CardData> ();
-    //    CardData cardData = new CardData();
-    //    cardData.id = 0;
-    //    cardData.isFlipped = false;
-    //    cardData.isMatched = false;
-    //    cardDataList.Add(cardData);
-    //    SaveGame(20, 10, cardDataList);
-    //}
     public void SaveGame(int score, float gameTime, int columns, int rows, List<CardData> cardDataList)
     {
         GameData data = new GameData

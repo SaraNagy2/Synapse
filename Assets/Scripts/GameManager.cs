@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     [System.NonSerialized] public List<CardData> cardDataList = new List<CardData>();
     [System.NonSerialized] public bool bEndGame = true;
+    [SerializeField] Button backButton;
 
 
     private void Awake()
@@ -19,6 +21,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void EnablebackButton(bool b) 
+    {
+        backButton.gameObject.SetActive(b);
     }
     public void SaveCard(string spriteName, bool isMatched, bool isFlipped)
     {   
@@ -45,6 +52,7 @@ public class GameManager : MonoBehaviour
             {
                 SaveCard(data.cardDataList[i].spriteName, data.cardDataList[i].isMatched, data.cardDataList[i].isFlipped);
             }
+            EnablebackButton(true);
         }
         else
         {

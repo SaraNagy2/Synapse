@@ -36,7 +36,6 @@ public class CardManager : MonoBehaviour
         {
             AdjustGridCellSize();
             loadSprites();
-            Debug.Log("OnEnableOnEnable");
         }
     }
     private void Start()
@@ -47,7 +46,6 @@ public class CardManager : MonoBehaviour
         {
             AdjustGridCellSize();
             loadPreviousSprites();
-            Debug.Log("StartStartStartStartStartStart");
         }
 
         if (!GameManager.Instance.bEndGame) //continue game 
@@ -57,8 +55,6 @@ public class CardManager : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
-            Debug.Log("StartStartStart");
-
         }
     }
     public void InstantiateCards(int _columns, int _rows)
@@ -182,13 +178,15 @@ public class CardManager : MonoBehaviour
         card_1 = null;
         card_2 = null;
     }
-    private void Reset()
+    public void Reset()
     {
         MainMenu.Instance.gameObject.SetActive(true);
         gameObject.SetActive(false);
         ComboCount = 0;
         Count = 0;
         SaveLoadManager.Instance.ClearSaveData();
+        GameManager.Instance.EnablebackButton(false);
+
     }
     void AdjustGridCellSize()
     {
