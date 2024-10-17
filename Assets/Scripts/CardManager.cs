@@ -13,17 +13,11 @@ public class CardManager : MonoBehaviour
     Card card_2;
     int Count;
     int MaxCount;
-    public bool bEndGame = true;
-    AudioSource audio;
-    [SerializeField] AudioClip FlipSound;
-    [SerializeField] AudioClip MismatchingSound;
-    [SerializeField] AudioClip MatchingSound;
-    [SerializeField] AudioClip WinSound;
-    [SerializeField] AudioClip GameOverSound;
+    [System.NonSerialized] public bool bEndGame = true;
     GridLayoutGroup gridLayoutGroup;
     [SerializeField] GameObject CardPrefab;
-    public int columns = 0;
-    public int rows = 0;
+    int columns = 0;
+    int rows = 0;
 
     private void Awake()
     {
@@ -63,10 +57,6 @@ public class CardManager : MonoBehaviour
             Destroy(child.gameObject);
         }
         bEndGame = true;
-    }
-    void Start()
-    {
-        audio = GetComponent<AudioSource>();
     }
     void loadSprites() 
     {
@@ -113,25 +103,21 @@ public class CardManager : MonoBehaviour
             card_1.Hide();
             card_2.Hide();
             Count++;
-            audio.PlayOneShot(MatchingSound);
+            SoundManager.Instance.PlayMatchingSound();
             if (MaxCount == Count)
             {
-                audio.PlayOneShot(WinSound);
+                SoundManager.Instance.PlayWinSound();
                 Reset();
             }
         }
         else
         {
-            audio.PlayOneShot(MismatchingSound);
+            SoundManager.Instance.PlayMismatchingSound();
             card_1.FlipBack();
             card_2.FlipBack();
         }
         card_1 = null;
         card_2 = null;
-    }
-    public void PlayFlipSound()
-    {
-        audio.PlayOneShot(FlipSound);
     }
     private void Reset()
     {
