@@ -31,5 +31,7 @@ public class MainMenu : MonoBehaviour
 
         gameObject.SetActive(false);
         Timer.Instance.Reset();
+        ScoreManager.Instance.Reset();
+
     }
 }

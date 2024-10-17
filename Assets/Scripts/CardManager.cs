@@ -13,6 +13,7 @@ public class CardManager : MonoBehaviour
     Card card_2;
     int Count;
     int MaxCount;
+    int ComboCount = 0;
     [System.NonSerialized] public bool bEndGame = true;
     GridLayoutGroup gridLayoutGroup;
     [SerializeField] GameObject CardPrefab;
@@ -100,6 +101,12 @@ public class CardManager : MonoBehaviour
         card_2 = card;
         if (card_1.CardSprite == card_2.CardSprite)
         {
+            ScoreManager.Instance.SetScore(10);
+            if (ComboCount > 0)
+            {
+                ScoreManager.Instance.SetScore(5* ComboCount);
+            }
+            ComboCount++;
             card_1.Hide();
             card_2.Hide();
             Count++;
@@ -112,6 +119,8 @@ public class CardManager : MonoBehaviour
         }
         else
         {
+            ComboCount = 0;
+            ScoreManager.Instance.SetScore(-2);
             SoundManager.Instance.PlayMismatchingSound();
             card_1.FlipBack();
             card_2.FlipBack();
@@ -123,6 +132,7 @@ public class CardManager : MonoBehaviour
     {
         MainMenu.Instance.gameObject.SetActive(true);
         gameObject.SetActive(false);
+        ComboCount = 0;
         Count = 0;
     }
     void AdjustGridCellSize()
