@@ -41,7 +41,6 @@ public class Card : MonoBehaviour
         Anim.SetBool("Hide", true);
         Hidden = true;
         GameManager.Instance.cardDataList[id].isMatched = true;
-        Debug.Log("id: "+id);
     }
     public void OnClickCard()
     {

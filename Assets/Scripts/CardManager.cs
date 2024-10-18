@@ -32,11 +32,8 @@ public class CardManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        if (!GameManager.Instance.bEndGame)
-        {
-            AdjustGridCellSize();
-            loadSprites();
-        }
+        AdjustGridCellSize();
+        loadSprites();
     }
     private void Start()
     {
