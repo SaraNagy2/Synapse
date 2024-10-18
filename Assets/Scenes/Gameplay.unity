@@ -1092,6 +1092,7 @@ GameObject:
   - component: {fileID: 1142192017}
   - component: {fileID: 1142192020}
   - component: {fileID: 1142192023}
+  - component: {fileID: 1142192024}
   m_Layer: 5
   m_Name: CardsPanel
   m_TagString: Untagged
@@ -1212,6 +1213,18 @@ MonoBehaviour:
   MatchingSound: {fileID: 8300000, guid: 80acb0f9ba03c434186944f7ecb3c087, type: 3}
   WinSound: {fileID: 8300000, guid: fcf92352b6e089d4e8a73e7af56223aa, type: 3}
   GameOverSound: {fileID: 8300000, guid: 65b3abd80eab3c44c8b5c98da322b66e, type: 3}
+--- !u!225 &1142192024
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142192015}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1259292881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,10 +1559,10 @@ RectTransform:
   m_Father: {fileID: 1763943914}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -233.135}
-  m_SizeDelta: {x: 800, y: 466.27}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 3.5, y: 2.5}
+  m_SizeDelta: {x: 7, y: -5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1732326421
 MonoBehaviour:
@@ -1681,7 +1694,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
