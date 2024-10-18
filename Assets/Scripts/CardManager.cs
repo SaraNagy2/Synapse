@@ -185,15 +185,24 @@ public class CardManager : MonoBehaviour
         GameManager.Instance.EnablebackButton(false);
 
     }
+
+    private void OnRectTransformDimensionsChange()
+    {
+        if (!gridLayoutGroup) gridLayoutGroup = GetComponent<GridLayoutGroup>();
+        AdjustGridCellSize();
+    }
     void AdjustGridCellSize()
     {
         RectTransform rectTransform = GetComponent<RectTransform>();
         float width = rectTransform.rect.width;
         float height = rectTransform.rect.height;
 
-        // Calculate the new cell size based on the container size
-        float cellWidth = (width / columns) - (gridLayoutGroup.spacing.x * (columns - 1) / columns);
-        float cellHeight = (height / rows) - (gridLayoutGroup.spacing.y * (rows - 1) / rows);
+        float spacingX = gridLayoutGroup.spacing.x * (columns - 1);
+        float spacingY = gridLayoutGroup.spacing.y * (rows - 1);
+
+        // Adjust the cell sizes dynamically
+        float cellWidth = (width  - spacingX) / columns;
+        float cellHeight = (height  - spacingY) / rows;
 
         // Set the new cell size
         gridLayoutGroup.cellSize = new Vector2(cellWidth, cellHeight);
